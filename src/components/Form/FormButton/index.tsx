@@ -8,7 +8,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: React.ComponentType<IconBaseProps>;
 };
 
-const Button: React.FC<ButtonProps> = ({
+const FormButton: React.FC<ButtonProps> = ({
   children,
   loading,
   icon: Icon,
@@ -20,4 +20,4 @@ const Button: React.FC<ButtonProps> = ({
   </Container>
 );
 
-export default Button;
+export default FormButton;

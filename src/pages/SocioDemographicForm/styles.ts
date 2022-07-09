@@ -23,3 +23,40 @@ export const Content = styled.div`
     }
   }
 `;
+
+export const FormBackgroud = styled.div`
+  width: 100%;
+  margin-top: 36px;
+  padding: 36px;
+
+  background-color: #ffffff;
+  border-radius: 8px;
+`;
+
+export const ContainerFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+`;
+
+export const FormDivisor = styled.hr`
+  border: 1px solid #e6e6f0;
+  width: 100%;
+
+  margin: 24px 0;
+`;
+
+export const ContainerButton = styled.div`
+  background: rgba(196, 196, 196, 0.24);
+  width: 100%;
+  height: 126px;
+  margin-top: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div {
+    width: 192px;
+  }
+`;
