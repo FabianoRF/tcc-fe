@@ -10,6 +10,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import Dashboard from '../pages/DashBoard';
 import ResetPassword from '../pages/ResetPassword';
 import Profile from '../pages/Profile';
+import SocioDemographicForm from '../pages/SocioDemographicForm';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -17,6 +18,9 @@ const Routes: React.FC = () => (
     <Route path="/signup" component={SignUp} />
     <Route path="/forgot-password" component={ForgotPassword} />
     <Route path="/reset-password" component={ResetPassword} />
+    <Route path="/socio-form" component={SocioDemographicForm} />
+    <Route path="/clinic-form" component={SocioDemographicForm} />
+    <Route path="/evaluation-form" component={SocioDemographicForm} />
 
     <Route path="/dashboard" component={Dashboard} isPrivate />
     <Route path="/profile" component={Profile} isPrivate />

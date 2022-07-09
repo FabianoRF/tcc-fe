@@ -71,7 +71,7 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <img src={logoSvg} alt="GoBarber" />
+          <h1>Logo/Arte a definir</h1>
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu login</h1>
@@ -84,9 +84,13 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Entrar</Button>
+            <Button type="submit" icon={FiLogIn}>
+              Entrar
+            </Button>
 
-            <Link to="/forgot-password">Esqueci minha senha</Link>
+            <Link to="/forgot-password">
+              Não possui cadastro? <b>Cadastre-se</b>
+            </Link>
           </Form>
 
           <Link to="/signup">

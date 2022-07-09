@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-import signInBackground from '../../assets/sign-in-background.png';
+import signInBackground from '../../assets/sign-in-background.jpg';
 
 export const Container = styled.div`
   height: 100vh;
@@ -50,20 +50,20 @@ export const AnimationContainer = styled.div`
     }
 
     a {
-      color: #f4ede8;
+      color: #ffffff;
       display: block;
       margin-top: 24px;
       text-decoration: none;
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#f4ede8')};
+        color: ${shade(0.2, '#ffffff')};
       }
     }
   }
 
   > a {
-    color: #ff9000;
+    color: #ffffff;
     text-decoration: none;
     transition: color 0.2s;
     margin-top: 24px;
@@ -76,7 +76,7 @@ export const AnimationContainer = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+      color: ${shade(0.2, '#ffffff')};
     }
   }
 `;
