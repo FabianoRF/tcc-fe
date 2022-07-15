@@ -15,8 +15,6 @@ import { Container, Content, AnimationContainer, Background } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import logoSvg from '../../assets/logo.svg';
-
 interface SignUpFormData {
   name: string;
   email: string;
@@ -77,7 +75,7 @@ const SignUp: React.FC = () => {
 
       <Content>
         <AnimationContainer>
-          <img src={logoSvg} alt="GoBarber" />
+          <h1>Logo/Arte a definir</h1>
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>

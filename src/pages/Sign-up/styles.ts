@@ -39,6 +39,7 @@ export const AnimationContainer = styled.div`
   justify-content: center;
 
   animation: ${appearFormRight} 1s;
+  color: #272a31;
 
   form {
     margin: 40px 0;

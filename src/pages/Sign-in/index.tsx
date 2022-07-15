@@ -14,8 +14,6 @@ import { Container, AnimationContainer, Content, Background } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import logoSvg from '../../assets/logo.svg';
-
 interface SignInFormData {
   email: string;
   password: string;
@@ -49,7 +47,7 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
 
-        history.push('/dashboard');
+        history.push('/socio-form');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);

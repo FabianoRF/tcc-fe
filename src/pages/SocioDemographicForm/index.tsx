@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import { FiPower } from 'react-icons/fi';
 import FormSteps from '../../components/Form/FormSteps';
 
 import {
@@ -13,6 +14,10 @@ import {
 } from './styles';
 import FormInput from '../../components/Form/FormInput';
 import FormButton from '../../components/Form/FormButton';
+import { useAuth } from '../../hooks/auth';
+import api from '../../services/api';
+import { useToast } from '../../hooks/toast';
+import FormSelect from '../../components/Form/FormSelect';
 
 interface SocioDemograficFormData {
   name: string;
@@ -22,15 +27,31 @@ interface SocioDemograficFormData {
 
 const SocioDemographicForm: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const abc = 'dsfasdf';
+  const { signOut } = useAuth();
+  const { addToast } = useToast();
 
-  const handleSubmit = useCallback((data: any) => {
-    console.log('data ', data);
-  }, []);
+  const handleSubmit = useCallback(
+    async (data: any) => {
+      console.log('data ', data);
+
+      await api.post('/patients', data);
+
+      addToast({
+        type: 'success',
+        title: 'Perfil atualizado!',
+        description:
+          'Suas informações do perfil foram atualizadas com sucesso!',
+      });
+    },
+    [addToast],
+  );
 
   return (
     <Container>
       <h1>Logo/Arte a definir</h1>
+      <button onClick={signOut} type="button">
+        <FiPower />
+      </button>
 
       <Content>
         <div>
@@ -78,77 +99,182 @@ const SocioDemographicForm: React.FC = () => {
             <FormDivisor />
 
             <ContainerFlex>
-              <FormInput title="Gênero" name="possuiFilhos" placeholder="" />
-              <FormInput
+              <FormSelect
+                title="Gênero"
+                name="genero"
+                options={[
+                  { value: 'Masculino', label: 'Masculino' },
+                  { value: 'Feminino', label: 'Feminino' },
+                ]}
+              />
+              <FormSelect
                 title="Orientação sexual"
-                name="telefone"
-                placeholder=""
+                name="orientacaoSexual"
+                options={[
+                  { value: 'Heterossexual', label: 'Heterossexual' },
+                  { value: 'Homossexual', label: 'Homossexual' },
+                  { value: 'Bissexual', label: 'Bissexual' },
+                ]}
               />
             </ContainerFlex>
-            <FormInput title="Estado civil" name="telefone" placeholder="" />
-
+            <FormSelect
+              title="Estado civil"
+              name="estadoCivil"
+              options={[
+                { value: 'Casado', label: 'Casado' },
+                { value: 'Amasiado', label: 'Amasiado' },
+                { value: 'Solteiro', label: 'Solteiro' },
+                { value: 'Viúvo', label: 'Viúvo' },
+                { value: 'Divorciado', label: 'Divorciado' },
+              ]}
+            />
             <FormDivisor />
 
             <ContainerFlex>
-              <FormInput
+              <FormSelect
                 title="Possui filhos?"
                 name="possuiFilhos"
-                placeholder=""
+                options={[
+                  { value: 'Sim', label: 'Sim' },
+                  { value: 'Não', label: 'Não' },
+                ]}
               />
-              <FormInput title="Quantos?" name="telefone" placeholder="" />
+              <FormInput title="Quantos?" name="qtdFilhos" placeholder="" />
             </ContainerFlex>
             <ContainerFlex>
               <FormInput
                 title="Com quem mora?"
-                name="endereco"
+                name="comQuemMora"
                 placeholder=""
               />
-              <FormInput
+              <FormSelect
                 title="Tipo de moradia"
-                name="telefone"
-                placeholder=""
+                name="tipoMoradia"
+                options={[
+                  { value: 'Própria', label: 'Própria' },
+                  { value: 'Alugada', label: 'Alugada' },
+                  { value: 'Cedida', label: 'Cedida' },
+                  { value: 'Situação de rua', label: 'Situação de rua' },
+                ]}
               />
             </ContainerFlex>
             <ContainerFlex>
-              <FormInput
+              <FormSelect
                 title="É alfabetizado?"
-                name="endereco"
-                placeholder=""
+                name="alfabetizado"
+                options={[
+                  { value: 'Sim', label: 'Sim' },
+                  { value: 'Não', label: 'Não' },
+                ]}
               />
-              <FormInput title="Escolaridade" name="telefone" placeholder="" />
+              <FormSelect
+                title="Escolaridade"
+                name="escolaridade"
+                options={[
+                  { value: 'Nunca Estudou', label: 'Nunca Estudou' },
+                  {
+                    value: 'Fundamental incompleto',
+                    label: 'Fundamental incompleto',
+                  },
+                  {
+                    value: 'Fundamental Completo',
+                    label: 'Fundamental Completo',
+                  },
+                  {
+                    value: 'Médio incompleto',
+                    label: 'Médio incompleto',
+                  },
+                  {
+                    value: 'Médio Completo',
+                    label: 'Médio Completo',
+                  },
+                  {
+                    value: 'Superior incompleto',
+                    label: 'Superior incompleto',
+                  },
+                  {
+                    value: 'Superior completo',
+                    label: 'Superior completo',
+                  },
+                  {
+                    value: 'Pós Graduação incompleta',
+                    label: 'Pós Graduação incompleta',
+                  },
+                  {
+                    value: 'Pós Graduação Completa',
+                    label: 'Pós Graduação Completa',
+                  },
+                  {
+                    value: 'Frequentou APAE',
+                    label: 'Frequentou APAE',
+                  },
+                ]}
+              />
             </ContainerFlex>
             <FormInput
               title="Se fez faculdade ou curso técnico, qual curso? "
-              name="endereco"
+              name="qualCurso"
               placeholder=""
             />
 
             <FormDivisor />
 
+            <FormSelect
+              title="Situação laboral"
+              name="situacaoLaboral"
+              options={[
+                {
+                  value: 'Assalariado com carteira assinada',
+                  label: 'Assalariado com carteira assinada',
+                },
+                {
+                  value: 'Assalariado sem carteira assinada',
+                  label: 'Assalariado sem carteira assinada',
+                },
+                {
+                  value: 'Autônomo',
+                  label: 'Autônomo',
+                },
+                {
+                  value: 'Aposentado/Pensionista',
+                  label: 'Aposentado/Pensionista',
+                },
+                {
+                  value: 'Desempregado',
+                  label: 'Desempregado',
+                },
+                {
+                  value: 'Não trabalha',
+                  label: 'Não trabalha',
+                },
+              ]}
+            />
+
             <ContainerFlex>
-              <FormInput
-                title="Situação laboral"
-                name="endereco"
-                placeholder=""
+              <FormSelect
+                title="Cor/Etinia"
+                name="corEtinia"
+                options={[
+                  { value: 'Branco', label: 'Branco' },
+                  { value: 'Preto', label: 'Preto' },
+                  { value: 'Pardo', label: 'Pardo' },
+                  { value: 'Indígena', label: 'Indígena' },
+                  { value: 'Asiático', label: 'Branco' },
+                ]}
               />
-              <FormInput
-                title="Tipo de moradia"
-                name="telefone"
-                placeholder=""
+              <FormSelect
+                title="Religião ou espiritualidade?"
+                name="religiao"
+                options={[
+                  { value: 'Sim', label: 'Sim' },
+                  { value: 'Não', label: 'Não' },
+                ]}
               />
-            </ContainerFlex>
-            <ContainerFlex>
-              <FormInput
-                title="É alfabetizado?"
-                name="endereco"
-                placeholder=""
-              />
-              <FormInput title="Escolaridade" name="telefone" placeholder="" />
             </ContainerFlex>
 
             <FormInput
               title="Se possui religião descreva: frequenta cultos, possui grupos de apoio, não pratica. "
-              name="endereco"
+              name="aDefinir"
               placeholder=""
             />
 
