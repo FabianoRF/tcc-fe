@@ -7,6 +7,7 @@ export const Container = styled.button`
   padding: 0 16px;
   height: 56px;
   width: 100%;
+  max-width: 200px;
   color: #ffffff;
   border: 0;
   font-weight: 500;
@@ -16,6 +17,7 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-end;
   gap: 8px;
 
   &:hover {

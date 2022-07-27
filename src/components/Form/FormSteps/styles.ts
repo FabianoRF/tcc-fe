@@ -8,9 +8,9 @@ export const Container = styled.div<ContainerProps>`
   width: 100%;
   background: #ffffff;
   border-radius: 8px;
-  margin-top: 42px;
   height: 51px;
   padding: 0 20px;
+  max-width: 776px;
 
   display: flex;
   justify-content: space-between;
