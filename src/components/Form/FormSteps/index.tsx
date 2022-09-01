@@ -13,7 +13,7 @@ const FormSteps: React.FC<FormStepsProps> = ({ isSelected }) => (
     <div />
     <Link to="/clinic-form">2. Caracterização Clínica</Link>
     <div />
-    <Link to="/evaluation-form">3. Avaliação de Risco</Link>
+    <Link to="/risk-assessment">3. Avaliação de Risco</Link>
   </Container>
 );
 

@@ -9,7 +9,7 @@ export interface FormData {
   naturalidade?: string;
   endereco?: string;
   telefone?: string;
-  dataNasc?: Date;
+  dataNasc?: string;
   idade?: number;
   genero?: string;
   orientacaoSexual?: string;

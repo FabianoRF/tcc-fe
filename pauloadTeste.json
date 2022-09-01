@@ -7,21 +7,21 @@
   "naturalidade": "asdfads",
   "endereco": "adsfadsf",
   "telefone": "adsfasdf",
-  "dataNasc": "dsfadsf",
+  "dataNasc": "dsfadsf", // trocar para date
   "genero": "Masculino",
   "orientacaoSexual": "Heterossexual",
   "estadoCivil": "Casado",
-  "possuiFilhos": "Sim",
-  "qtdFilhos": "adsfadsf",
+  "possuiFilhos": "Sim", // trocar para boolean
+  "qtdFilhos": "adsfadsf",// trocar para numero
   "comQuemMora": "adsfadsf",
   "tipoMoradia": "Alugada",
-  "alfabetizado": "Sim",
+  "alfabetizado": "Sim", // trocar para boolean
   "escolaridade": "Nunca Estudou",
   "qualCurso": "adsfdsafsadf",
   "situacaoLaboral": "Assalariado com carteira assinada",
   "corEtinia": "Branco",
   "religiao": "Sim",
-  "aDefinir": "adsfadsfdasf",
+  "aDefinir": "adsfadsfdasf", // descricaoReligiao
   "fazTratamento": true,
   "qualTratamento": "adsfasdf",
   "fazUsoMedicamento": true,

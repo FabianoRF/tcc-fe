@@ -80,6 +80,7 @@ const SocioDemographicForm: React.FC = () => {
                 title="Data de nascimento"
                 name="dataNasc"
                 placeholder=""
+                type="date"
               />
 
               <FormDivisor />
@@ -121,8 +122,8 @@ const SocioDemographicForm: React.FC = () => {
                   title="Possui filhos?"
                   name="possuiFilhos"
                   options={[
-                    { value: 'Sim', label: 'Sim' },
-                    { value: 'Não', label: 'Não' },
+                    { value: true, label: 'Sim' },
+                    { value: false, label: 'Não' },
                   ]}
                 />
                 <FormInput title="Quantos?" name="qtdFilhos" placeholder="" />
@@ -149,8 +150,8 @@ const SocioDemographicForm: React.FC = () => {
                   title="É alfabetizado?"
                   name="alfabetizado"
                   options={[
-                    { value: 'Sim', label: 'Sim' },
-                    { value: 'Não', label: 'Não' },
+                    { value: true, label: 'Sim' },
+                    { value: false, label: 'Não' },
                   ]}
                 />
                 <FormSelect
@@ -260,7 +261,7 @@ const SocioDemographicForm: React.FC = () => {
 
               <FormInput
                 title="Se possui religião descreva: frequenta cultos, possui grupos de apoio, não pratica. "
-                name="aDefinir"
+                name="descricaoReligiao"
                 placeholder=""
               />
               <div className="buttons-container">

@@ -29,7 +29,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState>(() => {
+  const [userData, setUserData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@app:token');
     const user = localStorage.getItem('@app:user');
 
@@ -55,29 +55,29 @@ const AuthProvider: React.FC = ({ children }) => {
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
-    setData({ token, user });
+    // setUserData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@app:token');
     localStorage.removeItem('@app:user');
 
-    setData({} as AuthState);
+    setUserData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
     (user: User) => {
-      setData({
-        token: data.token,
+      setUserData({
+        token: userData.token,
         user,
       });
     },
-    [data.token, setData],
+    [userData.token, setUserData],
   );
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{ user: userData.user, signIn, signOut, updateUser }}
     >
       {children}
     </AuthContext.Provider>

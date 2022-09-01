@@ -2,13 +2,8 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
-import {
-  Container,
-  ContainerFlex,
-  Content,
-  FormBackgroud,
-  FormDivisor,
-} from './styles';
+import { useHistory } from 'react-router-dom';
+import { Container, ContainerFlex, Content, FormBackgroud } from './styles';
 import FormInput from '../../components/Form/FormInput';
 import FormButton from '../../components/Form/FormButton';
 import api from '../../services/api';
@@ -27,6 +22,7 @@ const ClinicForm: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const { getFormData } = useFormData();
+  const history = useHistory();
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -38,27 +34,31 @@ const ClinicForm: React.FC = () => {
       console.log('data ', data);
 
       const socioDemoGraficFormData = getFormData();
+      console.log('socioDemoGraficFormData ', socioDemoGraficFormData);
       const requestData = {
         ...socioDemoGraficFormData,
         ...data,
+        qtdTentativaSuicidio: Number(data.qtdTentativaSuicidio),
+        qtdFilhos: Number(data.qtdFilhos),
+        quantasInternacoes: Number(data.quantasInternacoes),
+        dataNasc: socioDemoGraficFormData.dataNasc
+          ? new Date(socioDemoGraficFormData.dataNasc)
+          : null,
       };
 
-      await api.post('/patients', requestData);
+      const patient: any = await api.post('/patients', requestData);
 
-      addToast({
-        type: 'success',
-        title: 'Perfil atualizado!',
-        description:
-          'Suas informações do perfil foram atualizadas com sucesso!',
-      });
+      console.log('Patient ', patient);
+
+      history.push('/risk-assessment', { patientId: patient.data.id });
     },
-    [addToast, getFormData],
+    [getFormData, history],
   );
 
   return (
     <>
       <Header
-        title="Caracterização sociodemográfica"
+        title="Caracterização Clínica"
         subtitle="Por favor preecha o formulário abaixo"
       />
       <Container>

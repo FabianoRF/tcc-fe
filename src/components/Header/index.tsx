@@ -8,9 +8,14 @@ import { Container, TitleContainer } from './styles';
 interface HeaderProps {
   title: string;
   subtitle: string;
+  hideSteps?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
+const Header: React.FC<HeaderProps> = ({
+  title,
+  subtitle,
+  hideSteps = false,
+}) => {
   const { signOut } = useAuth();
   return (
     <Container>
@@ -26,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
         <p>{subtitle}</p>
       </TitleContainer>
 
-      <FormSteps />
+      {!hideSteps && <FormSteps />}
     </Container>
   );
 };
