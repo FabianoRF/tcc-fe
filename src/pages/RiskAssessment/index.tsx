@@ -35,9 +35,9 @@ const RiskAssessment: React.FC = () => {
         data,
       );
 
-      history.push('/');
+      history.push('/measures', { classification: 'HIGH' });
     },
-    [location.state],
+    [location.state, history],
   );
 
   return (

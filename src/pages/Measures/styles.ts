@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface FormBackgroudProps {
+  color: string;
+}
+
 export const Container = styled.div`
   background-color: #eaeff3;
 `;
@@ -13,7 +17,7 @@ export const Content = styled.div`
   align-items: center;
 `;
 
-export const FormBackgroud = styled.div`
+export const FormBackgroud = styled.div<FormBackgroudProps>`
   width: 100%;
   margin-top: -64px;
   margin-bottom: 64px;
@@ -21,6 +25,20 @@ export const FormBackgroud = styled.div`
 
   background-color: #ffffff;
   border-radius: 8px;
+
+  h1 {
+    color: ${props => props.color};
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 16px;
+    color: #272a31;
+    margin-top: 8px;
+  }
 
   .buttons-container {
     display: flex;
