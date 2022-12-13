@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <Container>
       <header>
-        <h1>Logo/Arte a definir</h1>
+        <h1>.</h1>
         <button onClick={signOut} type="button">
           <FiPower size={48} />
         </button>

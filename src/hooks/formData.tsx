@@ -49,9 +49,13 @@ interface FormContextData {
   getFormData(): FormData;
 }
 
+type FormProviderProps = {
+  children: React.ReactNode;
+};
+
 const FormContext = createContext<FormContextData>({} as FormContextData);
 
-const FormProvider: React.FC = ({ children }) => {
+const FormProvider: React.FC<FormProviderProps> = ({ children }) => {
   const [formDataState, setFormDataState] = useState<FormData>({});
 
   const setFormData = useCallback((data: FormData) => {

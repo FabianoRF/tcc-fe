@@ -10,6 +10,7 @@ import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
 import Header from '../../components/Header';
 import FormSelect from '../../components/Form/FormSelect';
+import FormSelectFlex from '../../components/Form/FormSelectFlex';
 
 interface LocationState {
   patientId: string;
@@ -28,12 +29,13 @@ const RiskAssessment: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: any) => {
       console.log('data ', data);
-      const { patientId } = location.state;
+      // const { patientId } = location.state;
+      const patientId = 1;
 
-      const response = await api.post(
-        `/patients/${patientId}/risk-assessment`,
-        data,
-      );
+      // const response = await api.post(
+      //   `/patients/${patientId}/risk-assessment`,
+      //   data,
+      // );
 
       history.push('/measures', { classification: 'HIGH' });
     },
@@ -50,41 +52,63 @@ const RiskAssessment: React.FC = () => {
         <Content>
           <FormBackgroud>
             <Form ref={formRef} onSubmit={handleSubmit}>
-              <FormCheckBox name="q1" label="Tentativa de suicídio" value="" />
-              <FormCheckBox
+              <FormSelectFlex
+                title="Tentativa de suicídio"
+                name="q1"
+                defaultValue={{ value: false, label: 'Selecione' }}
+                options={[
+                  { value: true, label: 'sim' },
+                  { value: false, label: 'não' },
+                ]}
+              />
+              <FormSelectFlex
+                title="Ideias suicidas passageiras"
+                defaultValue={{ value: false, label: 'Selecione' }}
                 name="q2"
-                label="Ideias suicidas passageiras"
-                value=""
+                options={[
+                  { value: true, label: 'sim' },
+                  { value: false, label: 'não' },
+                ]}
               />
-              <FormCheckBox
+              <FormSelectFlex
+                title="Ideias suicidas que causam perturbação"
+                defaultValue={{ value: false, label: 'Selecione' }}
                 name="q3"
-                label="Ideias suicidas que causam perturbação"
-                value=""
+                options={[
+                  { value: true, label: 'sim' },
+                  { value: false, label: 'não' },
+                ]}
               />
-              <FormCheckBox
+              <FormSelectFlex
+                title="Tem planejamento/ planos elaborados para acabar com sua vida"
+                defaultValue={{ value: false, label: 'Selecione' }}
                 name="q4"
-                label="Tem planejamento/ planos elaborados para acabar com sua vida"
-                value=""
+                options={[
+                  { value: true, label: 'sim' },
+                  { value: false, label: 'não' },
+                ]}
               />
-              <FormCheckBox
+              <FormSelectFlex
+                title="Acesso a meios para pôr fim a sua própria vida"
+                defaultValue={{ value: false, label: 'Selecione' }}
                 name="q5"
-                label="Acesso a meios para pôr fim a sua própria vida
-                "
-                value=""
+                options={[
+                  { value: true, label: 'sim' },
+                  { value: false, label: 'não' },
+                ]}
               />
-              <FormCheckBox
+              <FormSelectFlex
+                title="Transtorno mental controlado"
+                defaultValue={{ value: false, label: 'Selecione' }}
                 name="q6"
-                label="Transtorno mental controlado"
-                value=""
+                options={[
+                  { value: true, label: 'sim' },
+                  { value: false, label: 'não' },
+                ]}
               />
-              <FormCheckBox
-                name="q7"
-                label="Tolerância as mudanças da vida"
-                value=""
-              />
-
-              <FormSelect
+              <FormSelectFlex
                 title="Tolerância as mudanças da vida"
+                defaultValue={{ value: false, label: 'Selecione' }}
                 name="q7"
                 options={[
                   { value: 'sim', label: 'sim' },

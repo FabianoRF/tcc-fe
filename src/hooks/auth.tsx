@@ -26,9 +26,13 @@ interface AuthContextData {
   updateUser(user: User): void;
 }
 
+interface AuthProviderProps {
+  children: React.ReactNode;
+}
+
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [userData, setUserData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@app:token');
     const user = localStorage.getItem('@app:user');
@@ -42,21 +46,24 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions', {
-      email,
-      password,
-    });
+  const signIn = useCallback(
+    async ({ email, password }: { email: string; password: string }) => {
+      const response = await api.post('sessions', {
+        email,
+        password,
+      });
 
-    const { token, user } = response.data;
+      const { token, user } = response.data;
 
-    localStorage.setItem('@app:token', token);
-    localStorage.setItem('@app:user', JSON.stringify(user));
+      localStorage.setItem('@app:token', token);
+      localStorage.setItem('@app:user', JSON.stringify(user));
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
-    // setUserData({ token, user });
-  }, []);
+      // setUserData({ token, user });
+    },
+    [],
+  );
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@app:token');
